@@ -8,4 +8,10 @@ export class PresentData {
     public updateText: UpdateText;
     public updateDone: UpdateDone;
     public reorderItem: ReorderTodo;
+
+    public static createUpdateDone(itemNumber: number, newDoneState: boolean) {
+        const result = new PresentData();
+        result.updateDone = new UpdateDone(itemNumber, newDoneState);
+        return result;
+    }
 }

@@ -3,6 +3,7 @@ import {elementOpen} from "incremental-dom";
 import {elementVoid} from "incremental-dom";
 import {elementClose} from "incremental-dom";
 import {text} from "incremental-dom";
+import actions from "../actions/actions";
 
 export function todos(todos) {
     elementOpen("div", "todos");
@@ -10,13 +11,27 @@ export function todos(todos) {
     elementClose("div");
 }
 
-function todo(todo) {
-    elementOpen("div", "", [ "class", "checkbox" ]);
+function todo(todo, index) {
+    elementOpen("div", "", [], "class", checkBoxWrapperClasses(todo));
         elementOpen("label");
             elementVoid(
-                "input", "", [ "type", "checkbox" ],
-                "checked", todo.done ? "checked" : null);
+                "input", "", [
+                    "type", "checkbox",
+                    "onclick", function () {
+                        actions.updateDone(index, this.checked);
+                    }
+                ],
+                "checked", todo.done ? "checked" : null
+            );
             text(todo.text);
         elementClose("label");
     elementClose("div");
+}
+
+function checkBoxWrapperClasses(todo) {
+    const classes = ["checkbox" ];
+    if (todo.done) {
+        classes.push("checked");
+    }
+    return classes.join(" ");
 }

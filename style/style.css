@@ -1,0 +1,4 @@
+.checkbox.checked label {
+    color: darkgray;
+    text-decoration: line-through;
+}

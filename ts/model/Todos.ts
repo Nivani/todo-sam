@@ -15,7 +15,7 @@ export class Todos {
     }
 
     public updateDone(itemNumber: Number, newDoneState: boolean): void {
-
+        this._todos[itemNumber ].done = newDoneState;
     }
 
     public removeItem(removeItem: Number): void {
