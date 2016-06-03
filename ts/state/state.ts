@@ -1,20 +1,17 @@
 import {Model} from "../model/model";
 import view from "../view/view";
 
-class State {
-
-    public render(model: Model): void {
-        this.representation(model);
-        this.nextAction(model);
+export default {
+    render: (model: Model) => {
+        representation(model);
+        nextAction(model);
     }
+};
 
-    private representation(model: Model): void {
-        view.display(model);
-    }
-
-    private nextAction(model: Model): void {
-
-    }
+function representation(model: Model): void {
+    view.display(model);
 }
 
-export default new State();
+function nextAction(model: Model): void {
+
+}

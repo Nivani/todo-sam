@@ -28,8 +28,12 @@ export class Model {
             this._todos.addItem(data.addItem)
         }
 
-        if (data.editItem) {
-            this._todos.editItem(data.editItem.itemNumber, data.editItem.newText);
+        if (data.updateText) {
+            this._todos.updateText(data.updateText.itemNumber, data.updateText.newText);
+        }
+
+        if (data.updateDone) {
+            this._todos.updateDone(data.updateDone.itemNumber, data.updateDone.newDoneState);
         }
 
         if (data.removeItem) {

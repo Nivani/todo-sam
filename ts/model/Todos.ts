@@ -10,15 +10,19 @@ export class Todos {
 
     }
 
-    editItem(itemNumber: Number, newText: String): void {
+    public updateText(itemNumber: Number, newText: String): void {
 
     }
 
-    removeItem(removeItem: Number): void {
+    public updateDone(itemNumber: Number, newDoneState: boolean): void {
 
     }
 
-    reorderItem(originalNumber: Number, newNumber: Number): void {
+    public removeItem(removeItem: Number): void {
+
+    }
+
+    public reorderItem(originalNumber: Number, newNumber: Number): void {
 
     }
 }
