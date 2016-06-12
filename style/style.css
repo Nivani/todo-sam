@@ -2,3 +2,8 @@
     color: darkgray;
     text-decoration: line-through;
 }
+
+.new-item-input {
+    display: inline-block;
+    width: auto;
+}

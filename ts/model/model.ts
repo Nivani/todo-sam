@@ -9,14 +9,6 @@ export class Model {
         return this._todos.todos;
     }
 
-    constructor() {
-        this._todos.todos.push(new Todo("Go grocery shopping"));
-        this._todos.todos.push(new Todo("Mow lawn"));
-        this._todos.todos.push(new Todo("Wash car"));
-
-        this._todos.todos[1].done = true;
-    }
-
     public present(data: PresentData) {
         data = data || new PresentData();
         this.crud(data);

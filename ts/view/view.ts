@@ -4,7 +4,7 @@ import {patch} from "incremental-dom";
 
 export default {
     display: (model: Model) => {
-        const element = document.getElementById('todo-app');
-        patch(element, () =>  todos(model.todos));
+        const element = document.getElementById("todo-app");
+        patch(element, () => todos(model.todos));
     }
 };

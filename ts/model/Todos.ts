@@ -7,7 +7,7 @@ export class Todos {
     }
 
     public addItem(addItem: String): void {
-
+        this._todos.push(new Todo(addItem));
     }
 
     public updateText(itemNumber: Number, newText: String): void {

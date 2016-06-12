@@ -3,7 +3,6 @@ import {UpdateDone} from "../model/present-data/UpdateDone";
 import model from "../model/model";
 
 export default {
-    updateDone: (itemNumber: number, newDoneState: boolean) => {
-        model.present(PresentData.createUpdateDone(itemNumber, newDoneState));
-    }
+    addItem: (text: string) => model.present(PresentData.createAddItem(text)),
+    updateDone: (itemNumber: number, newDoneState: boolean) => model.present(PresentData.createUpdateDone(itemNumber, newDoneState))
 };
