@@ -1,8 +1,8 @@
-import {PresentData} from "../model/present-data/PresentData";
-import {UpdateDone} from "../model/present-data/UpdateDone";
 import model from "../model/model";
+import {AddItem} from "../model/present-data/AddItem";
+import {UpdateDone} from "../model/present-data/UpdateDone";
 
 export default {
-    addItem: (text: string) => model.present(PresentData.createAddItem(text)),
-    updateDone: (itemNumber: number, newDoneState: boolean) => model.present(PresentData.createUpdateDone(itemNumber, newDoneState))
+    addItem: (text: string) => model.present(new AddItem(text)),
+    updateDone: (itemNumber: number, newDoneState: boolean) => model.present(new UpdateDone(itemNumber, newDoneState))
 };

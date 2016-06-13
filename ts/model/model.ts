@@ -10,31 +10,18 @@ export class Model {
     }
 
     public present(data: PresentData) {
-        data = data || new PresentData();
         this.crud(data);
         state.render(this);
     }
 
-    private crud(data) {
-        if (data.addItem) {
-            this._todos.addItem(data.addItem)
-        }
-
-        if (data.updateText) {
-            this._todos.updateText(data.updateText.itemNumber, data.updateText.newText);
-        }
-
-        if (data.updateDone) {
-            this._todos.updateDone(data.updateDone.itemNumber, data.updateDone.newDoneState);
-        }
-
-        if (data.removeItem) {
-            this._todos.removeItem(data.removeItem);
-        }
-
-        if (data.reorderItem) {
-            this._todos.reorderItem(data.reorderItem.originalNumber, data.reorderItem.newNumber);
-        }
+    private crud(data: PresentData) {
+        data.accept({
+            visitAddItem: text => this._todos.addItem(text),
+            visitRemoveItem: item => this._todos.removeItem(item),
+            visitUpdateText: (item, newText) => this._todos.updateText(item, newText),
+            visitUpdateDone: (item, newDone) => this._todos.updateDone(item, newDone),
+            visitReorderItem: (originalNumber, newNumber) => this._todos.reorderItem(originalNumber, newNumber)
+        });
     };
 }
 

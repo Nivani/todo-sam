@@ -1,8 +1,9 @@
+import Spy = jasmine.Spy;
+import state from "./../state/state";
 import {Model} from "./model";
 import {Todo} from "./Todo";
-import {PresentData} from "./present-data/PresentData";
-import state from "./../state/state";
-import Spy = jasmine.Spy;
+import {UpdateDone} from "./present-data/UpdateDone";
+import {AddItem} from "./present-data/AddItem";
 
 describe("Model", () => {
     beforeEach(() => {
@@ -20,7 +21,7 @@ describe("Model", () => {
         expect(underTest.todos[1].done).toBe(true);
         expect(underTest.todos[2].done).toBe(false);
 
-        underTest.present(PresentData.createUpdateDone(0, true));
+        underTest.present(new UpdateDone(0, true));
 
         expect(underTest.todos[0].done).toBe(true);
         expect(underTest.todos[1].done).toBe(true);
@@ -30,7 +31,7 @@ describe("Model", () => {
 
         (<Spy>state.render).calls.reset();
 
-        underTest.present(PresentData.createUpdateDone(0, false));
+        underTest.present(new UpdateDone(0, false));
 
         expect(underTest.todos[0].done).toBe(false);
         expect(underTest.todos[1].done).toBe(true);
@@ -42,7 +43,7 @@ describe("Model", () => {
     it ("Handles adding a new item correctly.", () => {
         const underTest = new Model();
 
-        underTest.present(PresentData.createAddItem("New item"));
+        underTest.present(new AddItem("New item"));
 
         expect(underTest.todos.length).toBe(1);
         expect(underTest.todos[0].done).toBe(false);
