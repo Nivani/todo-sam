@@ -1,9 +1,9 @@
-.checkbox.checked label {
+.form-group.checked input {
     color: darkgray;
     text-decoration: line-through;
 }
 
-.new-item-input {
+.todo-item-input {
     display: inline-block;
     width: auto;
 }

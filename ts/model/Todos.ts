@@ -11,11 +11,11 @@ export class Todos {
     }
 
     public updateText(itemNumber: Number, newText: String): void {
-
+        this.withTodoAtIndex(itemNumber, item => item.text = newText);
     }
 
     public updateDone(itemNumber: Number, newDoneState: boolean): void {
-        this._todos[itemNumber ].done = newDoneState;
+        this.withTodoAtIndex(itemNumber, item => item.done = newDoneState);
     }
 
     public removeItem(removeItem: Number): void {
@@ -24,5 +24,14 @@ export class Todos {
 
     public reorderItem(originalNumber: Number, newNumber: Number): void {
 
+    }
+
+    private withTodoAtIndex(itemNumber: number, action: (Todo) => void) {
+        const item = this._todos[itemNumber];
+        if (item) {
+            action(item);
+        } else {
+            throw "Unknown itemNumber " + itemNumber;
+        }
     }
 }

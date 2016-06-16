@@ -38,5 +38,29 @@ describe("Todos", () => {
         expect(underTest.todos[0].done).toBe(false);
         expect(underTest.todos[1].done).toBe(true);
         expect(underTest.todos[2].done).toBe(false);
+
+        expect(() => underTest.updateDone(4, true)).toThrow();
+    });
+
+    it ("Handles changing text of items correctly.", () => {
+        const underTest = new Todos();
+        underTest.addItem("Go grocery shopping");
+        underTest.addItem("Mow lawn");
+        underTest.addItem("Wash car");
+
+        expect(underTest.todos[0].text).toBe("Go grocery shopping");
+        expect(underTest.todos[1].text).toBe("Mow lawn");
+        expect(underTest.todos[2].text).toBe("Wash car");
+
+        underTest.updateText(1, "Trim hedge");
+
+        expect(underTest.todos[0].text).toBe("Go grocery shopping");
+        expect(underTest.todos[1].text).toBe("Trim hedge");
+        expect(underTest.todos[2].text).toBe("Wash car");
+
+        underTest.updateDone(0, true);
+
+        expect(() => underTest.updateText(0, "Go furniture shopping")).toThrow();
+        expect(() => underTest.updateDone(4, true)).toThrow();
     });
 });

@@ -8,60 +8,52 @@ import actions from "../actions/actions";
 export function todos(todos: Todo[]) {
     elementOpen("div", "todos");
     todos.forEach(todo);
-    newTodo();
+    newTodo(todos.length);
     elementClose("div");
 }
 
 function todo(todo: Todo, index: number) {
-    elementOpen("div", "", [], "class", checkBoxWrapperClasses(todo));
-        elementOpen("label");
-            elementVoid(
-                "input", "", [
-                    "type", "checkbox",
-                    "onclick", function () {
-                        actions.updateDone(index, this.checked);
-                    }
-                ],
-                "checked", todo.done ? "checked" : null
-            );
-            text(todo.text);
-        elementClose("label");
+    elementOpen("div", "todo"+index, [], "class", checkBoxWrapperClasses(todo));
+        elementVoid("input", "", [
+            "type", "checkbox",
+            "onclick", e => actions.updateDone(index, e.target.checked)
+        ],
+        "checked", todo.done ? "checked" : null);
+        text(" ");
+        elementVoid("input", "", [
+            "type", "text",
+            "class", "form-control todo-item-input",
+            "onchange", e => actions.updateText(index, e.target.value)
+        ],
+        "value", todo.text,
+        "disabled", todo.done ? "" : undefined);
     elementClose("div");
 }
 
-function newTodo() {
-    elementOpen("div", "", []);
-        elementVoid(
-            "input", "", [
-                "type", "checkbox",
-                "onclick", event => event.preventDefault()
-            ]
-        );
+function newTodo(numberOfTodos) {
+    elementOpen("div", "newTodo", ["class", "form-group"]);
+        elementVoid("input", "", [
+            "type", "checkbox",
+            "onclick", event => event.preventDefault()
+        ]);
         text(" ");
-        elementVoid(
-            "input", "", [
-                "type", "text",
-                "id", "newItemInput",
-                "placeholder", "New item",
-                "class", "form-control new-item-input",
-            ]
-        );
-        text(" ");
-        elementOpen(
-            "button", "", [
-                "class", "btn btn-primary",
-                "onclick", function () {
-                    const text = document.getElementById("newItemInput").value;
-                    actions.addItem(text);
+        elementVoid("input", "newItemInput" + numberOfTodos, [
+            "type", "text",
+            "id", "newItemInput",
+            "placeholder", "New item",
+            "class", "form-control todo-item-input",
+            "onchange", e => {
+                if (e.target.value) {
+                    actions.addItem(e.target.value);
                 }
-            ]);
-        text("+");
-        elementClose("button");
+            }
+        ],
+        "value", "");
     elementClose("div");
 }
 
 function checkBoxWrapperClasses(todo: Todo) {
-    const classes = ["checkbox"];
+    const classes = ["form-group"];
     if (todo.done) {
         classes.push("checked");
     }
