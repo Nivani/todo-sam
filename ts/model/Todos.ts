@@ -18,8 +18,10 @@ export class Todos {
         this.withTodoAtIndex(itemNumber, item => item.done = newDoneState);
     }
 
-    public removeItem(removeItem: Number): void {
-
+    public removeItem(itemNumber: Number): void {
+        if (itemNumber >= 0 && itemNumber < this.todos.length) {
+            this._todos.splice(itemNumber, 1);
+        }
     }
 
     public reorderItem(originalNumber: Number, newNumber: Number): void {

@@ -23,7 +23,7 @@ function todo(todo: Todo, index: number) {
         elementVoid("input", "", [
             "type", "text",
             "class", "form-control todo-item-input",
-            "onchange", e => actions.updateText(index, e.target.value)
+            "onblur", e => actions.updateText(index, e.target.value)
         ],
         "value", todo.text,
         "disabled", todo.done ? "" : undefined);

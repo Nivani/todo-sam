@@ -6,7 +6,7 @@ import {AddItem} from "./present-data/AddItem";
 import {Todos} from "./Todos";
 
 describe("Todos", () => {
-    it ("Handles adding a new item correctly.", () => {
+    it("Handles adding a new item correctly.", () => {
         const underTest = new Todos();
 
         underTest.addItem("New item");
@@ -16,7 +16,7 @@ describe("Todos", () => {
         expect(underTest.todos[0].text).toBe("New item");
     });
 
-    it ("Handles checking and unchecking items correctly.", () => {
+    it("Handles checking and unchecking items correctly.", () => {
         const underTest = new Todos();
         underTest.addItem("Go grocery shopping");
         underTest.addItem("Mow lawn");
@@ -42,7 +42,7 @@ describe("Todos", () => {
         expect(() => underTest.updateDone(4, true)).toThrow();
     });
 
-    it ("Handles changing text of items correctly.", () => {
+    it("Handles changing text of items correctly.", () => {
         const underTest = new Todos();
         underTest.addItem("Go grocery shopping");
         underTest.addItem("Mow lawn");
@@ -62,5 +62,35 @@ describe("Todos", () => {
 
         expect(() => underTest.updateText(0, "Go furniture shopping")).toThrow();
         expect(() => underTest.updateDone(4, true)).toThrow();
+    });
+
+    it("Handles removing an item correctly.", () => {
+        const underTest = new Todos();
+        underTest.addItem("Go grocery shopping");
+        underTest.addItem("Mow lawn");
+        underTest.addItem("Wash car");
+
+        underTest.removeItem(0);
+
+        expect(underTest.todos.length).toBe(2);
+        expect(underTest.todos[0].text).toBe("Mow lawn");
+
+        underTest.removeItem(1);
+
+        expect(underTest.todos.length).toBe(1);
+        expect(underTest.todos[0].text).toBe("Mow lawn");
+    });
+
+    it("Removing a non-existing item doesn't fail.", () => {
+        const underTest = new Todos();
+        underTest.addItem("Go grocery shopping");
+        underTest.addItem("Mow lawn");
+        underTest.addItem("Wash car");
+
+        expect(() => underTest.removeItem(3)).not.toThrow();
+        expect(underTest.todos.length).toBe(3);
+
+        expect(() => underTest.removeItem(-1)).not.toThrow();
+        expect(underTest.todos.length).toBe(3);
     });
 });
