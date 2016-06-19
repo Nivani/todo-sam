@@ -10,30 +10,10 @@
 
     <script src="node_modules/systemjs/dist/system.src.js"></script>
     <script src="node_modules/es6-shim/es6-shim.min.js"></script>
-    <script src="node_modules/incremental-dom/dist/incremental-dom.js"></script>
+    <script src="system.conf.js"></script>
 
     <script>
-        System.config({
-            packages: {
-                output: {
-                    format: 'register',
-                    defaultExtension: 'js'
-                }
-            }
-        });
-        System.register("incremental-dom", [], function (exp) {
-            return {
-                setters:[],
-                execute: function() {
-                    for (var i in window.IncrementalDOM) {
-                        if (window.IncrementalDOM.hasOwnProperty(i)) {
-                            exp(i, window.IncrementalDOM[i]);
-                        }
-                    }
-                }
-            };
-        });
-        System.import('output/main')
+        System.import("output/main")
                 .then(null, console.error.bind(console));
     </script>
 </head>
