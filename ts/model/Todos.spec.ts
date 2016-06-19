@@ -14,6 +14,18 @@ describe("Todos", () => {
         expect(underTest.todos.length).toBe(1);
         expect(underTest.todos[0].done).toBe(false);
         expect(underTest.todos[0].text).toBe("New item");
+
+        underTest.addItem("New item 2");
+        underTest.addItem("New item 3");
+
+        const todos = underTest.todos;
+        expect(todos.length).toBe(3);
+        expect(todos[0].text).toBe("New item");
+        expect(todos[1].text).toBe("New item 2");
+        expect(todos[2].text).toBe("New item 3");
+        expect(todos[0].id).not.toEqual(todos[1].id);
+        expect(todos[0].id).not.toEqual(todos[2].id);
+        expect(todos[1].id).not.toEqual(todos[2].id);
     });
 
     it("Handles checking and unchecking items correctly.", () => {

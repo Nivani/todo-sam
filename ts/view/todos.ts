@@ -13,14 +13,15 @@ export function todos(todos: Todo[]) {
 }
 
 function todo(todo: Todo, index: number) {
-    elementOpen("div", "todo"+index, [], "class", checkBoxWrapperClasses(todo));
-        elementVoid("input", "", [
+    const id = "todo-" + todo.id;
+    elementOpen("div", id, [], "class", checkBoxWrapperClasses(todo));
+        elementVoid("input", id + "-checkbox" + todo.id, [
             "type", "checkbox",
             "onclick", e => actions.updateDone(index, e.target.checked)
         ],
         "checked", todo.done ? "checked" : null);
         text(" ");
-        elementVoid("input", "", [
+        elementVoid("input", id + "-input", [
             "type", "text",
             "class", "form-control todo-item-input",
             "onblur", e => actions.updateText(index, e.target.value)
