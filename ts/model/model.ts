@@ -20,7 +20,7 @@ export class Model {
             visitRemoveItem: id => this._todos.removeItem(id),
             visitUpdateText: (id, newText) => this._todos.updateText(id, newText),
             visitUpdateDone: (id, newDone) => this._todos.updateDone(id, newDone),
-            visitReorderItem: (originalNumber, newNumber) => this._todos.reorderItem(originalNumber, newNumber)
+            visitReorderItem: (id, newPosition) => this._todos.reorderItem(id, newPosition)
         });
     };
 }

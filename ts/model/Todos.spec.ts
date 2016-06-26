@@ -60,15 +60,15 @@ describe("Todos", () => {
         underTest.addItem("Mow lawn");
         underTest.addItem("Wash car");
 
-        expect(underTest.todos[0].text).toBe("Go grocery shopping");
-        expect(underTest.todos[1].text).toBe("Mow lawn");
-        expect(underTest.todos[2].text).toBe("Wash car");
+        expect(underTest.todos.map(todo => todo.text)).toEqual([
+            "Go grocery shopping", "Mow lawn", "Wash car"
+        ]);
 
         underTest.updateText(underTest.todos[1].id, "Trim hedge");
 
-        expect(underTest.todos[0].text).toBe("Go grocery shopping");
-        expect(underTest.todos[1].text).toBe("Trim hedge");
-        expect(underTest.todos[2].text).toBe("Wash car");
+        expect(underTest.todos.map(todo => todo.text)).toEqual([
+            "Go grocery shopping", "Trim hedge", "Wash car"
+        ]);
 
         underTest.updateDone(underTest.todos[0].id, true);
 
@@ -101,5 +101,73 @@ describe("Todos", () => {
 
         expect(() => underTest.removeItem("invalidId")).not.toThrow();
         expect(underTest.todos.length).toBe(3);
+    });
+
+    it("Reorders an item correctly.", () => {
+        const underTest = new Todos();
+        underTest.addItem("Go grocery shopping");
+        underTest.addItem("Mow lawn");
+        underTest.addItem("Wash car");
+
+        underTest.reorderItem(underTest.todos[0].id, 1);
+
+        expect(underTest.todos.map(todo => todo.text)).toEqual([
+            "Mow lawn", "Go grocery shopping", "Wash car"
+        ]);
+    });
+
+    it("Reorders an item to the last position correctly.", () => {
+        const underTest = new Todos();
+        underTest.addItem("Go grocery shopping");
+        underTest.addItem("Mow lawn");
+        underTest.addItem("Wash car");
+
+        underTest.reorderItem(underTest.todos[0].id, 2);
+
+        expect(underTest.todos.map(todo => todo.text)).toEqual([
+            "Mow lawn", "Wash car", "Go grocery shopping"
+        ]);
+    });
+
+    it("Reorders an item to the first position correctly.", () => {
+        const underTest = new Todos();
+        underTest.addItem("Go grocery shopping");
+        underTest.addItem("Mow lawn");
+        underTest.addItem("Wash car");
+
+        underTest.reorderItem(underTest.todos[1].id, 0);
+
+        expect(underTest.todos.map(todo => todo.text)).toEqual([
+            "Mow lawn", "Go grocery shopping", "Wash car"
+        ]);
+    });
+
+    it("Can handle reordering an item to the same position.", () => {
+        const underTest = new Todos();
+        underTest.addItem("Go grocery shopping");
+        underTest.addItem("Mow lawn");
+        underTest.addItem("Wash car");
+
+        underTest.reorderItem(underTest.todos[1].id, 1);
+
+        expect(underTest.todos.map(todo => todo.text)).toEqual([
+            "Go grocery shopping", "Mow lawn", "Wash car"
+        ]);
+    });
+
+    it("Throws an exception when reordering an unknown item.", () => {
+        const underTest = new Todos();
+
+        expect(() => underTest.reorderItem("invalidId", 0)).toThrow();
+    });
+
+    it("Throws an exception when reordering to an invalid position.", () => {
+        const underTest = new Todos();
+        underTest.addItem("Go grocery shopping");
+        underTest.addItem("Mow lawn");
+        underTest.addItem("Wash car");
+
+        expect(() => underTest.reorderItem(underTest.todos[0].id, -1)).toThrow();
+        expect(() => underTest.reorderItem(underTest.todos[0].id, 3)).toThrow();
     });
 });

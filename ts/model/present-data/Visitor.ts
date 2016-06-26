@@ -5,5 +5,5 @@ export interface PresentDataVisitor {
     visitRemoveItem(id: string): void;
     visitUpdateText(id: string, newText: String): void;
     visitUpdateDone(id: string, newDone: boolean): void;
-    visitReorderItem(originalNumber: number, newNumber: number): void;
+    visitReorderItem(id: string, newPosition: number): void;
 }
