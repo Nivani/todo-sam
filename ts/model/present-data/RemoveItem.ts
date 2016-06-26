@@ -3,10 +3,10 @@ import {PresentDataVisitor} from "./Visitor";
 
 export class RemoveItem implements PresentData {
     public constructor(
-        private number: number
+        private id: string
     ) {}
 
     accept(visitor: PresentDataVisitor): void {
-        visitor.visitRemoveItem(this.number);
+        visitor.visitRemoveItem(this.id);
     }
 }

@@ -12,19 +12,19 @@ export function todos(todos: Todo[]) {
     elementClose("div");
 }
 
-function todo(todo: Todo, index: number) {
-    const id = "todo-" + todo.id;
-    elementOpen("div", id, [], "class", checkBoxWrapperClasses(todo));
-        elementVoid("input", id + "-checkbox" + todo.id, [
+function todo(todo: Todo) {
+    const elementId = "todo-" + todo.id;
+    elementOpen("div", elementId, [], "class", checkBoxWrapperClasses(todo));
+        elementVoid("input", elementId + "-checkbox" + todo.id, [
             "type", "checkbox",
-            "onclick", e => actions.updateDone(index, e.target.checked)
+            "onclick", e => actions.updateDone(todo.id, e.target.checked)
         ],
         "checked", todo.done ? "checked" : null);
         text(" ");
-        elementVoid("input", id + "-input", [
+        elementVoid("input", elementId + "-input", [
             "type", "text",
             "class", "form-control todo-item-input",
-            "onblur", e => actions.updateText(index, e.target.value)
+            "onblur", e => actions.updateText(todo.id, e.target.value)
         ],
         "value", todo.text,
         "disabled", todo.done ? "" : undefined);

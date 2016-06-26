@@ -17,10 +17,10 @@ export class Todo {
         }
     }
 
-    constructor(private _text: String) {}
+    constructor(private _text: string) {}
 
     private static idCount = 0;
-    private static nextId() {
+    private static nextId(): string {
         return Todo.idCount++;
     }
 }

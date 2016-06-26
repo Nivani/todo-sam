@@ -10,17 +10,18 @@ export class Todos {
         this._todos.push(new Todo(addItem));
     }
 
-    public updateText(itemNumber: Number, newText: String): void {
-        this.withTodoAtIndex(itemNumber, item => item.text = newText);
+    public updateText(id: string, newText: String): void {
+        this.withTodoWithId(id, item => item.text = newText);
     }
 
-    public updateDone(itemNumber: Number, newDoneState: boolean): void {
-        this.withTodoAtIndex(itemNumber, item => item.done = newDoneState);
+    public updateDone(id: string, newDoneState: boolean): void {
+        this.withTodoWithId(id, item => item.done = newDoneState);
     }
 
-    public removeItem(itemNumber: Number): void {
-        if (itemNumber >= 0 && itemNumber < this.todos.length) {
-            this._todos.splice(itemNumber, 1);
+    public removeItem(id: string): void {
+        const index = this.todos.findIndex(todo => todo.id === id);
+        if (index > -1) {
+            this._todos.splice(index, 1);
         }
     }
 
@@ -28,12 +29,12 @@ export class Todos {
 
     }
 
-    private withTodoAtIndex(itemNumber: number, action: (Todo) => void) {
-        const item = this._todos[itemNumber];
+    private withTodoWithId(id: string, action: (Todo) => void) {
+        const item = this.todos.find(todo => todo.id === id);
         if (item) {
             action(item);
         } else {
-            throw "Unknown itemNumber " + itemNumber;
+            throw "Unknown todo id " + id;
         }
     }
 }

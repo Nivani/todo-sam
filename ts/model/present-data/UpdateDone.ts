@@ -3,12 +3,12 @@ import {PresentDataVisitor} from "./Visitor";
 
 export class UpdateDone implements PresentData {
     public constructor(
-        private itemNumber: number,
+        private id: string,
         private newDoneState: boolean
     ) {}
 
 
     accept(visitor: PresentDataVisitor): void {
-        visitor.visitUpdateDone(this.itemNumber, this.newDoneState);
+        visitor.visitUpdateDone(this.id, this.newDoneState);
     }
 }

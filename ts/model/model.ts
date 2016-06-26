@@ -17,9 +17,9 @@ export class Model {
     private crud(data: PresentData) {
         data.accept({
             visitAddItem: text => this._todos.addItem(text),
-            visitRemoveItem: item => this._todos.removeItem(item),
-            visitUpdateText: (item, newText) => this._todos.updateText(item, newText),
-            visitUpdateDone: (item, newDone) => this._todos.updateDone(item, newDone),
+            visitRemoveItem: id => this._todos.removeItem(id),
+            visitUpdateText: (id, newText) => this._todos.updateText(id, newText),
+            visitUpdateDone: (id, newDone) => this._todos.updateDone(id, newDone),
             visitReorderItem: (originalNumber, newNumber) => this._todos.reorderItem(originalNumber, newNumber)
         });
     };

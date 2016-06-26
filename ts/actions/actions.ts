@@ -6,12 +6,12 @@ import {RemoveItem} from "../model/present-data/RemoveItem";
 
 export default {
     addItem: (text: string) => model.present(new AddItem(text)),
-    updateDone: (itemNumber: number, newDoneState: boolean) => model.present(new UpdateDone(itemNumber, newDoneState)),
-    updateText: (itemNumber: number, newText: string) => {
+    updateDone: (id: string, newDoneState: boolean) => model.present(new UpdateDone(id, newDoneState)),
+    updateText: (id: string, newText: string) => {
         if (newText.length === 0) {
-            model.present(new RemoveItem(itemNumber));
+            model.present(new RemoveItem(id));
         } else {
-            model.present(new UpdateText(itemNumber, newText));
+            model.present(new UpdateText(id, newText));
         }
     }
 };

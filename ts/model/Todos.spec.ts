@@ -33,25 +33,25 @@ describe("Todos", () => {
         underTest.addItem("Go grocery shopping");
         underTest.addItem("Mow lawn");
         underTest.addItem("Wash car");
-        underTest.updateDone(1, true);
+        underTest.updateDone(underTest.todos[1].id, true);
 
         expect(underTest.todos[0].done).toBe(false);
         expect(underTest.todos[1].done).toBe(true);
         expect(underTest.todos[2].done).toBe(false);
 
-        underTest.updateDone(0, true);
+        underTest.updateDone(underTest.todos[0].id, true);
 
         expect(underTest.todos[0].done).toBe(true);
         expect(underTest.todos[1].done).toBe(true);
         expect(underTest.todos[2].done).toBe(false);
 
-        underTest.updateDone(0, false);
+        underTest.updateDone(underTest.todos[0].id, false);
 
         expect(underTest.todos[0].done).toBe(false);
         expect(underTest.todos[1].done).toBe(true);
         expect(underTest.todos[2].done).toBe(false);
 
-        expect(() => underTest.updateDone(4, true)).toThrow();
+        expect(() => underTest.updateDone("invalidId", true)).toThrow();
     });
 
     it("Handles changing text of items correctly.", () => {
@@ -64,16 +64,16 @@ describe("Todos", () => {
         expect(underTest.todos[1].text).toBe("Mow lawn");
         expect(underTest.todos[2].text).toBe("Wash car");
 
-        underTest.updateText(1, "Trim hedge");
+        underTest.updateText(underTest.todos[1].id, "Trim hedge");
 
         expect(underTest.todos[0].text).toBe("Go grocery shopping");
         expect(underTest.todos[1].text).toBe("Trim hedge");
         expect(underTest.todos[2].text).toBe("Wash car");
 
-        underTest.updateDone(0, true);
+        underTest.updateDone(underTest.todos[0].id, true);
 
-        expect(() => underTest.updateText(0, "Go furniture shopping")).toThrow();
-        expect(() => underTest.updateDone(4, true)).toThrow();
+        expect(() => underTest.updateText("invalidId", "Go furniture shopping")).toThrow();
+        expect(() => underTest.updateDone("invalidId", true)).toThrow();
     });
 
     it("Handles removing an item correctly.", () => {
@@ -82,12 +82,12 @@ describe("Todos", () => {
         underTest.addItem("Mow lawn");
         underTest.addItem("Wash car");
 
-        underTest.removeItem(0);
+        underTest.removeItem(underTest.todos[0].id);
 
         expect(underTest.todos.length).toBe(2);
         expect(underTest.todos[0].text).toBe("Mow lawn");
 
-        underTest.removeItem(1);
+        underTest.removeItem(underTest.todos[1].id);
 
         expect(underTest.todos.length).toBe(1);
         expect(underTest.todos[0].text).toBe("Mow lawn");
@@ -99,10 +99,7 @@ describe("Todos", () => {
         underTest.addItem("Mow lawn");
         underTest.addItem("Wash car");
 
-        expect(() => underTest.removeItem(3)).not.toThrow();
-        expect(underTest.todos.length).toBe(3);
-
-        expect(() => underTest.removeItem(-1)).not.toThrow();
+        expect(() => underTest.removeItem("invalidId")).not.toThrow();
         expect(underTest.todos.length).toBe(3);
     });
 });
