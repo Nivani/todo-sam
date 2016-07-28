@@ -1,4 +1,4 @@
-#### [Progressive web app](https://developers.google.com/web/progressive-web-apps/) using [SAM pattern](http://sam.js.org/) and [Incremental DOM](http://google.github.io/incremental-dom/)
+#### Playing around with [SAM pattern](http://sam.js.org/)
 Run the following commands to start:
 ```
 npm install
