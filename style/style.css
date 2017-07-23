@@ -1,9 +1,0 @@
-.form-group.checked input {
-    color: darkgray;
-    text-decoration: line-through;
-}
-
-.todo-item-input {
-    display: inline-block;
-    width: auto;
-}
