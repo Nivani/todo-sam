@@ -1,0 +1,18 @@
+<section class="main" *ngIf="todos.length > 0">
+  <input
+    class="toggle-all" type="checkbox" *ngIf="todos.length" #toggleall
+    [checked]="allCompleted" (click)="setAllTo.emit(toggleall.checked)">
+  <ul class="todo-list">
+    <li *ngFor="let todo of todos" [class.completed]="todo.completed" [class.editing]="todo.editing">
+      <div class="view">
+        <input class="toggle" type="checkbox" (click)="toggleCompletion.emit(todo)" [checked]="todo.completed">
+        <label (dblclick)="editTodo(todo)">{{todo.title}}</label>
+        <button class="destroy" (click)="remove.emit(todo)"></button>
+      </div>
+      <input
+        class="edit" *ngIf="todo.editing" [value]="todo.title" #editedtodo
+        (blur)="stopEditing(todo, editedtodo.value)" (keyup.enter)="updateEditingTodo(todo, editedtodo.value)"
+        (keyup.escape)="cancelEditingTodo(todo)">
+    </li>
+  </ul>
+</section>

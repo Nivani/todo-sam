@@ -10,6 +10,9 @@ import { remove } from './model/remove.acceptor';
 import { removeCompleted } from './model/removeCompleted.acceptor';
 import { toggleCompletion } from './model/toggleCompletion.acceptor';
 import { setAll } from './model/setAll.acceptor';
+import { TodoHeaderComponent } from './todo-header/todo-header.component';
+import { TodoBodyComponent } from './todo-body/todo-body.component';
+import { TodoFooterComponent } from './todo-footer/todo-footer.component';
 
 const samInstance = new NgSAM<Todos>(
   { todos: [] },
@@ -18,7 +21,10 @@ const samInstance = new NgSAM<Todos>(
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TodoHeaderComponent,
+    TodoBodyComponent,
+    TodoFooterComponent
   ],
   imports: [
     BrowserModule,
