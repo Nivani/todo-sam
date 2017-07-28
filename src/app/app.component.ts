@@ -3,6 +3,13 @@ import { Component } from '@angular/core';
 import { Todo, Todos } from './model/Todos';
 import { NgSAM } from '../sam/angular/NgSAM';
 
+/**
+ * Root component has responsibility of the "State" part in SAM:
+ * - Compute state representation using sam.select(...)
+ * - Process the next-action predicate also using sam.select(...)
+ * - Map view events to actions which present data to the model
+ */
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

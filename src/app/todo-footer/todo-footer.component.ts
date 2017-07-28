@@ -1,6 +1,10 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Todo } from '../model/Todos';
 
+/**
+ * Child components are presentation (or dumb) components and are part of of the "View" part in SAM
+ */
+
 @Component({
   selector: 'todo-footer',
   templateUrl: 'todo-footer.component.html',
