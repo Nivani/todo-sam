@@ -3,8 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
-import { Todos } from './model/Todos';
-import { NgSAM } from '../sam/angular/NgSAM';
+import { initialModel, Todos } from './model/Todos';
 import { add } from './model/add.acceptor';
 import { remove } from './model/remove.acceptor';
 import { removeCompleted } from './model/removeCompleted.acceptor';
@@ -13,11 +12,7 @@ import { setAll } from './model/setAll.acceptor';
 import { TodoHeaderComponent } from './todo-header/todo-header.component';
 import { TodoBodyComponent } from './todo-body/todo-body.component';
 import { TodoFooterComponent } from './todo-footer/todo-footer.component';
-
-const samInstance = new NgSAM<Todos>(
-  { todos: [] },
-  [ add, remove, removeCompleted, setAll, toggleCompletion ]
-);
+import { SAMModule } from '../sam/angular/SAMModule';
 
 @NgModule({
   declarations: [
@@ -29,11 +24,10 @@ const samInstance = new NgSAM<Todos>(
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
-  ],
-  providers: [
-    { provide: NgSAM, useValue: samInstance }
+    HttpModule,
+    SAMModule.run<Todos>(initialModel, [add, remove, removeCompleted, setAll, toggleCompletion])
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

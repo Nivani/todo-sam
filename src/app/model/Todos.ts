@@ -20,3 +20,5 @@ export class Todo {
 export interface Todos {
   todos: Array<Todo>;
 }
+
+export const initialModel: Todos = { todos: [] };
