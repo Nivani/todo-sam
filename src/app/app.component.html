@@ -4,7 +4,8 @@
     [todos]="todos | async"
     (remove)="remove($event)"
     (setAllTo)="setAllTo($event)"
-    (toggleCompletion)="toggleCompletion($event)">
+    (toggleCompletion)="toggleCompletion($event)"
+    (updateTitle)="updateTitle($event.id, $event.title)">
   </todo-body>
   <todo-footer [todos]="todos | async" (removeCompleted)="removeCompleted()"></todo-footer>
 </section>

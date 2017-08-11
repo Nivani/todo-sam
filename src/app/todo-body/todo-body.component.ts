@@ -24,6 +24,9 @@ export class TodoBodyComponent {
   @Output()
   public toggleCompletion = new EventEmitter<Todo>();
 
+  @Output()
+  public updateTitle = new EventEmitter<{ id: string, title: string }>();
+
   public get allCompleted(): boolean {
     return this.todos.find(todo => !todo.completed) ? false : true;
   }
@@ -43,9 +46,9 @@ export class TodoBodyComponent {
 
     if (editedTitle.length === 0) {
       return this.remove.emit(todo);
+    } else {
+      return this.updateTitle.emit({ id: todo.id, title: editedTitle });
     }
-
-    todo.title = editedTitle;
   }
 
   public editTodo(todo: Todo) {

@@ -1,0 +1,8 @@
+{
+  "name": "todo-sam-backend",
+  "main": "backend.js",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.4"
+  }
+}
