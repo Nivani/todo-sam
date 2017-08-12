@@ -1,11 +1,16 @@
 <section class="todoapp">
   <todo-header (add)="addTodo($event)"></todo-header>
   <todo-body
-    [todos]="todos | async"
+    [todos]="filteredTodos | async"
     (remove)="remove($event)"
     (setAllTo)="setAllTo($event)"
     (toggleCompletion)="toggleCompletion($event)"
     (updateTitle)="updateTitle($event.id, $event.title)">
   </todo-body>
-  <todo-footer [todos]="todos | async" (removeCompleted)="removeCompleted()"></todo-footer>
+  <todo-footer
+    [todos]="todos | async"
+    [filter]="filter | async"
+    (removeCompleted)="removeCompleted()"
+    (selectFilter)="selectFilter($event)">
+  </todo-footer>
 </section>

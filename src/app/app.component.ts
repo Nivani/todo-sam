@@ -1,9 +1,11 @@
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/combineLatest';
 import { Component } from '@angular/core';
-import { Todo, Todos } from './model/Todos';
+import { Todo, TodoFilter, Todos } from './model/Todos';
 import { NgSAM } from '../sam/angular/NgSAM';
 import { TodoService } from './remote/TodoService';
+import { filterTodos } from './selectors/filterTodos.selector';
 
 /**
  * Root component has responsibility of the "State" part in SAM:
@@ -19,6 +21,13 @@ import { TodoService } from './remote/TodoService';
 })
 export class AppComponent {
   public todos: Observable<Todo[]> = this.sam.select(model => model.todos);
+
+  public filteredTodos: Observable<Todo[]> = this.todos.combineLatest(
+    this.sam.select(model => model.filter),
+    filterTodos
+  );
+
+  public filter: Observable<TodoFilter> = this.sam.select(model => model.filter);
 
   constructor(private sam: NgSAM<Todos>, private todoService: TodoService) {
     todoService.getTodos().then(todos => this.presentTodos(todos));
@@ -50,5 +59,9 @@ export class AppComponent {
 
   public updateTitle(todoId: string, newTitle: string) {
     this.todoService.updateTitle(todoId, newTitle).then(todos => this.presentTodos(todos));
+  }
+
+  public selectFilter(newFilter: TodoFilter) {
+    this.sam.present({ filter: newFilter });
   }
 }

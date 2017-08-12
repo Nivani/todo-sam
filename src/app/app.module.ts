@@ -9,6 +9,7 @@ import { TodoBodyComponent } from './todo-body/todo-body.component';
 import { TodoFooterComponent } from './todo-footer/todo-footer.component';
 import { SAMModule } from '../sam/angular/SAMModule';
 import { todos } from './model/todos.acceptor';
+import { filter } from './model/filter.acceptor';
 import { TodoService } from './remote/TodoService';
 
 @NgModule({
@@ -22,7 +23,7 @@ import { TodoService } from './remote/TodoService';
     BrowserModule,
     FormsModule,
     HttpModule,
-    SAMModule.run<Todos>(initialModel, [todos])
+    SAMModule.run<Todos>(initialModel, [todos, filter])
   ],
   providers: [
     TodoService
