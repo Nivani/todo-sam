@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
 import { Todo, TodoFilter, Todos } from './model/Todos';
 import { NgSAM } from '../sam/angular/NgSAM';
 import { TodoService } from './remote/TodoService';
-import { filterTodos } from './selectors/filterTodos.selector';
+import { filterTodos } from './state-representation/filterTodos';
 
 /**
  * Root component has responsibility of the "State" part in SAM:
