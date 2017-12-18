@@ -2,7 +2,7 @@
 
 This is a [TodoMVC](http://todomvc.com/) project that shows how [SAM Pattern](http://sam.js.org/) can be implemented in a typical Angular application.
 
-It demonstrates scenario's you will find in a typical web application: handling user input, (reactive) computed properties, and asynchronous operations like calling a remote API.
+It demonstrates scenarios you will find in a typical web application: handling user input, (reactive) computed properties, and asynchronous operations like calling a remote API.
 
 The idea is to make it as "Angular-like" as possible so that it is accessible for a typical Angular developer.
 
