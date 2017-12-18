@@ -1,32 +1,17 @@
 # TodoSam
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.
+This is a [TodoMVC](http://todomvc.com/) project that shows how [SAM Pattern](http://sam.js.org/) can be implemented in a typical Angular application.
 
-## Development server
+The idea is to make it as "Angular-like" as possible so that it is accessible for a typical Angular developer.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+In this spirit we used [Angular CLI](https://cli.angular.io/) to generate the project, [RxJS](http://reactivex.io/rxjs/) to create a reactive loop and Typescript.
 
-## Backend server
+## Introduction
 
-Go to the `backend` directory and run `npm install` and then `node backend.js`. `http://localhost:3000/api/todos` should return `[]`.
+You do not need a complex framework to use SAM Pattern. The whole implementation is only ~40 lines of Typescript ([See initializeSAM.ts](src/sam/initializeSAM.ts)).
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class/module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+The rest is about structuring your components:
+* Actions and State: [src/app/app.component.ts](src/app/app.component.ts)
+* Model: [src/app/model](src/app/model)
+* State representation: [src/app/state-representation](src/app/state-representation)
+* View: [src/app/todo-body/todo-body.component.ts](src/app/todo-body/todo-body.component.ts), [src/app/todo-header/todo-header.component.ts](src/app/todo-header/todo-header.component.ts) and [src/app/todo-footer/todo-footer.component.ts](src/app/todo-footer/todo-footer.component.ts)

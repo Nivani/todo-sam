@@ -8,7 +8,7 @@ import { TodoService } from './remote/TodoService';
 import { filterTodos } from './state-representation/filterTodos';
 
 /**
- * Root component has responsibility of the "State" part in SAM:
+ * The root component of your route has the responsibility of the "State" part in SAM:
  * - Compute state representation using sam.select(...)
  * - Process the next-action predicate also using sam.select(...)
  * - Map view events to actions which present data to the model
