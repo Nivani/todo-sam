@@ -12,7 +12,7 @@ In this spirit we used [Angular CLI](https://cli.angular.io/) to generate the pr
 
 You do not need a complex framework to use SAM Pattern. The core is only ~40 lines of Typescript ([See initializeSAM.ts](src/sam/initializeSAM.ts)).
 
-The rest is about how you can use familiar concepts from Angular and RxJS:
+The rest is about how you use familiar concepts from Angular, Typescript and RxJS:
 * Actions and State: [src/app/app.component.ts](src/app/app.component.ts)
 * Model: [src/app/model](src/app/model)
 * State representation: [src/app/state-representation](src/app/state-representation)
